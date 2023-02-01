@@ -1,102 +1,58 @@
 <script lang="ts">
-	let recognition_textarea: HTMLTextAreaElement;
-	let english_textarea: HTMLTextAreaElement;
-	let japanese_textarea: HTMLTextAreaElement;
+  import header_image from '$lib/assets/images/images_photo_fu.jpg'
+  import pork_katsu_image from '$lib/assets/images/pork_katsu.jpeg'
+  import amoraisu from '$lib/assets/images/amoraisu.jpeg'
 
-	function speech(text: string, lang: string): void {
-		const utterance = new SpeechSynthesisUtterance();
-
-		utterance.text = text;
-		utterance.lang = lang;
-		utterance.rate = 1;
-		utterance.pitch = 1;
-		utterance.volume = 1;
-
-		speechSynthesis.speak(utterance);
-	}
-
-	function speech_in_english(): void {
-		speech(english_textarea.value, 'en-US');
-	}
-
-	function speech_in_japanese(): void {
-		speech(japanese_textarea.value, 'ja-JP');
-	}
-
-	function recognition(lang: string): void {
-		if (!('webkitSpeechRecognition' in window)) {
-			recognition_textarea.value = 'Speech Recognition Not Available'
-			return
-		}
-
-		recognition_textarea.value = 'Recognition...'
-
-		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-		const recognition = new speech_recognition();
-
-		recognition.lang = lang;
-		recognition.interimResults = false;
-		recognition.maxAlternatives = 1;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-		recognition.onresult = (event: any): void => {
-			const result = event.results[0][0].transcript;
-			recognition_textarea.value = result;
-		};
-
-		recognition.start();
-	}
-
-	function recognition_in_english(): void {
-		recognition('en-US');
-	}
-
-	function recognition_in_japanese(): void {
-		recognition('ja-JP');
-	}
+  import Item from '../lib/components/Item.svelte'
+  import Shop from '../lib/components/Shop.svelte'
+  import Header from '../lib/components/Header.svelte'
 </script>
 
-<h1>Welcome to Talk</h1>
-<p>
-	Visit <a href="https://github.com/sinProject-Inc/favorite">https://github.com/sinProject-Inc/favorite</a> to
-	read the documentation
-</p>
+<div class="flex_column">
+  <Header />
+  <div class="item_list">
+    <Shop
+      image_src={header_image}
+      name="洋食の歩（エフ・ユー）"
+      description="立ち飲み居酒屋・バー、弁当"
+    />
 
-Speech Recognition
-<textarea
-	readonly
-	placeholder="Press the button and say something"
-	size="60"
-	bind:this={recognition_textarea}
-/>
-<button on:click={recognition_in_english}>English</button>
-<button on:click={recognition_in_japanese}>Japanese</button>
+    <Item
+      image_src={amoraisu}
+      name="アモライス"
+      price="¥500"
+      description="キャリア30年のホテルシェフが作るオムライス。 ご飯がチキンライスではなく当店オリジナルバターライスです。"
+    />
 
-<br /><br />
-
-English
-<textarea
-	placeholder="Enter text to speech in English"
-	size="60"
-	value="Hello world!"
-	bind:this={english_textarea}
-/>
-<button on:click={speech_in_english}>Text-to-Speech</button>
-
-<br /><br />
-
-Japanese
-<textarea
-	placeholder="Enter text to speech in Japanese"
-	size="60"
-	value="こんにちは、世界"
-	bind:this={japanese_textarea}
-/>
-<button on:click={speech_in_japanese}>Text-to-Speech</button>
+    <Item
+      image_src={pork_katsu_image}
+      name="ポークカツ"
+      price="¥500"
+      description="揚げたてのポークカツをシャリアピンソースで"
+    />
+  </div>
+</div>
 
 <style>
-	textarea {
-		width: 100%;
-		height: 100px;
-	}
+  :global(body) {
+    margin: 0;
+    font-size: 3.6vw;
+  }
+
+  .flex_column {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .item_list {
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+    background-color: #fafafa;
+
+    flex: 1;
+    overflow: auto;
+  }
 </style>
