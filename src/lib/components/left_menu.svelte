@@ -1,24 +1,28 @@
 <script lang="ts">
-  import ListItem from './ListItem.svelte'
+  import ListItem from './list_item.svelte'
 
-  const reload_url = 'javascript:location.reload()'
+  const is_login = true;
 </script>
 
 <div class="left-menu">
   <div>
     <div class="service-logo">
-      <a href="{reload_url}">
+      <a href="/">
         <h1>Favorite</h1>
       </a>
     </div>
 
     <div class="link-list">
-      <ListItem url="{reload_url}" title="Home" logo="🏠" />
-      <ListItem url="#!" title="Notice" logo="📨" />
-      <ListItem url="#!" title="Post" logo="📮" />
-      <ListItem url="#!" title="Profile" logo="😃" />
-      <ListItem url="#!" title="Others" logo="📦" />
-      <ListItem url="#!" title="SignIn" logo="✏️" />
+      {#if is_login}
+        <ListItem url="/" title="Home" logo="🏠" />
+        <ListItem url="#!" title="Notice" logo="📨" />
+        <ListItem url="#!" title="Post" logo="📮" />
+        <ListItem url="/profile" title="Profile" logo="😃" />
+        <ListItem url="#!" title="Others" logo="📦" />
+        <ListItem url="#!" title="SignOut" logo="👋" />
+      {:else}
+        <ListItem url="/sign-in" title="SignIn" logo="✏️" />
+      {/if}
     </div>
   </div>
 </div>

@@ -30,4 +30,8 @@
     font-size: 18px;
     font-weight: 700;
   }
+
+  .link-item .link-item-title div {
+    width: 100px;
+  }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import LeftMenu from "../lib/components/LeftMenu.svelte";
-  import RightMenu from "../lib/components/RightMenu.svelte";
-  import TimeLine from "../lib/components/TimeLine.svelte";
+  import LeftMenu from "../lib/components/left_menu.svelte";
+  import RightMenu from "../lib/components/right_menu.svelte";
+  import TimeLine from "../lib/components/time_line.svelte";
 </script>
 
 <svelte:head>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ActionItem from './ActionItem.svelte'
+  import ActionItem from './action_item.svelte'
 </script>
 
 <div class="actions">

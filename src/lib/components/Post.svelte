@@ -1,11 +1,12 @@
 <script lang="ts">
-  import Actions from "./Actions.svelte";
+  import Actions from "./actions.svelte";
 
   export let profile_src: string;
   export let user_name: string;
   export let user_link: string;
   export let time: string;
   export let content: string;
+  export let image_src: string;
 </script>
 
 <div class="post">
@@ -34,7 +35,10 @@
       <div class="meta-content-detail">
         <div class="content-detail">
           {content}
-          <!-- <img src="https://p4.wallpaperbetter.com/wallpaper/544/405/275/horizon-earth-4k-wallpaper-preview.jpg" alt="post image"> -->
+
+          {#if image_src}
+            <img src="{image_src}" alt="PostImage" />
+          {/if}
         </div>
       </div>
     </div>
