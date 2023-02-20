@@ -9,3 +9,102 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+model AppSettings {
+  id          Int       @id @default(autoincrement())
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  deleted_at  DateTime?
+  key         String    @unique
+  value       String
+}
+
+model Roles {
+  id          Int       @id @default(autoincrement())
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  deleted_at  DateTime?
+  name        String    @unique
+  users       Users[]
+}
+
+model Users {
+  id          Int               @id @default(autoincrement())
+  created_at  DateTime          @default(now())
+  updated_at  DateTime          @updatedAt
+  deleted_at  DateTime?
+  role_id     Int
+  email       String            @unique
+  name        String
+  bio         String?
+  role        Roles             @relation(fields: [role_id], references: [id])
+  auth_pin    AuthPins[]
+  auth_token  AuthTokens[]
+  posts       Posts[]
+  likes       Likes[]
+  bookmarks   BookMarks[]
+  follows     FollowRelations[] @relation("follows")
+  follow_bies FollowRelations[] @relation("follow_bies")
+}
+
+model FollowRelations {
+  id                Int      @id @default(autoincrement())
+  created_at        DateTime @default(now())
+  follow_user_id    Int
+  follows           Users    @relation("follows", fields: [follow_user_id], references: [id])
+  follow_by_user_id Int
+  follow_by         Users    @relation("follow_bies", fields: [follow_by_user_id], references: [id])
+}
+
+model AuthTokens {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  user_id     Int
+  token       String   @unique
+  is_detelted Boolean  @default(false)
+  user        Users    @relation(fields: [user_id], references: [id])
+
+  @@index(updated_at)
+}
+
+model AuthPins {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user_id    Int      @unique
+  pin_code   String   @unique
+  user       Users    @relation(fields: [user_id], references: [id])
+}
+
+model Posts {
+  id          Int         @id @default(autoincrement())
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  deleted_at  DateTime?
+  detail      String
+  user_id     Int         @unique
+  user        Users       @relation(fields: [user_id], references: [id])
+  parent_id   Int?
+  likes       Likes[]
+  bookmarks   BookMarks[]
+}
+
+model Likes {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  user_id     Int
+  post_id     Int
+  user        Users    @relation(fields: [user_id], references: [id])
+  post        Posts    @relation(fields: [post_id], references: [id])
+}
+
+model BookMarks {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user_id    Int
+  post_id    Int
+  user       Users    @relation(fields: [user_id], references: [id])
+  post       Posts    @relation(fields: [post_id], references: [id])
+}

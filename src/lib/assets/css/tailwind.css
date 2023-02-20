@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.input-element {
+		@apply border rounded-md overflow-hidden border-media-border bg-border;
+	}
+
+	button,
+	select {
+		@apply cursor-pointer;
+	}
+
+	button {
+		@apply py-[6px] px-2;
+	}
+
+	select {
+		@apply py-[6px] px-3 bg-inherit appearance-none outline-0;
+	}
+
+	textarea {
+		@apply py-[10px] px-4 bg-inherit;
+	}
+
+	.center-container {
+		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-4;
+	}
+
+	.title {
+		@apply font-bold text-lg;
+	}
+
+	.card {
+		box-shadow: 0 0.1px 0.5px #0000000e, 0 0.4px 1.6px #00000014, 0 2px 7px #00000021;
+		border-radius: 0.5rem;
+	}
+
+	.submit_button {
+		@apply bg-link text-white font-semibold border-link w-full box-border;
+	}
+
+	.card-parent {
+		margin: 0 auto;
+		width: 100%;
+		max-width: calc(500px + 2rem);
+		@apply z-10;
+	}
+
+	.gradient-background {
+		background: rgb(2, 0, 36);
+		background: linear-gradient(
+			229deg,
+			rgba(2, 0, 36, 1) 0%,
+			rgba(9, 9, 121, 1) 23%,
+			rgba(0, 212, 255, 1) 100%
+		);
+	}
+
+	.glass-panel {
+		@apply glass rounded-md shadow-lg;
+	}
+
+	.glass-button {
+		@apply bg-black/20 text-white/90 fill-white/80 py-2 px-4 hover:bg-black/10 transition-all duration-300 rounded-lg hover:shadow-sm;
+	}
+}
+
+@layer utilities {
+	.overflow-wrap-anywhere {
+		overflow-wrap: anywhere;
+	}
+
+	.glass {
+		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-black/30 text-white/90 fill-white/90;
+	}
+}

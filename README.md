@@ -36,3 +36,26 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+update tailwindcss
+```bash
+npx tailwindcss -i ./src/lib/assets/css/tailwind.css -o ./src/lib/assets/css/dist/tailwind.css --watch
+```
+
+
+timeline
+  not sign in:
+    サイドバーはsign inボタンのみ表示
+    postの閲覧が可能
+    何かの操作をしようとするとログインを求める
+
+  sign in:
+    e-mail registered:
+      サイドバーはsign inボタン以外の全てを表示
+      timelineを表示
+      操作可能
+    e-mail not registered:
+      サイドバーはsign inボタン以外の全てを表示
+      profile edit画面へ強制遷移
+      save処理後にtimelineを表示

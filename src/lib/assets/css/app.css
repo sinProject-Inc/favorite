@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0;
+  background-color: #fff;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  color: rgb(23, 21, 21);
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* TODO dark modeを追加する必要がある */
+/*
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+
+  header {
+    background-color: black;
+    color: #fff;
+  }
+
+  header nav input[type="text"] {
+    background-color: black;
+    color: #fff;
+  }
+
+  header nav input[type="text"]::placeholder {
+    color: #fff;
+  }
+
+  header nav .search {
+    background-color: black;
+    border: 1px solid #ccc;
+  }
+
+  header nav .dark-mode {
+    background-color: black;
+    border: 1px solid #ccc;
+  }
+
+  .post {
+    background-color: black;
+    color: #fff;
+    box-shadow: 3px 5px 5px rgb(225, 230, 224);
+    border: solid 1px;
+    border-color: #fff;
+  }
+} */
