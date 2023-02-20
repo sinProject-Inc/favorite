@@ -28,20 +28,31 @@ model Roles {
 }
 
 model Users {
-  id          Int          @id @default(autoincrement())
-  created_at  DateTime     @default(now())
-  updated_at  DateTime     @updatedAt
+  id          Int               @id @default(autoincrement())
+  created_at  DateTime          @default(now())
+  updated_at  DateTime          @updatedAt
   deleted_at  DateTime?
   role_id     Int
-  email       String       @unique
+  email       String            @unique
   name        String
   bio         String?
-  role        Roles        @relation(fields: [role_id], references: [id])
+  role        Roles             @relation(fields: [role_id], references: [id])
   auth_pin    AuthPins[]
   auth_token  AuthTokens[]
   posts       Posts[]
   likes       Likes[]
   bookmarks   BookMarks[]
+  followers   FollowRelations[] @relation("Follower")
+  following   FollowRelations[] @relation("following")
+}
+
+model FollowRelations {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  followerId  Int
+  follower    Users    @relation("Follower", fields: [followerId], references: [id])
+  followingId Int
+  following   Users    @relation("following", fields: [followingId], references: [id])
 }
 
 model AuthTokens {
