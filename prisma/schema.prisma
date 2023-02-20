@@ -42,17 +42,17 @@ model Users {
   posts       Posts[]
   likes       Likes[]
   bookmarks   BookMarks[]
-  followers   FollowRelations[] @relation("Follower")
-  following   FollowRelations[] @relation("following")
+  follows     FollowRelations[] @relation("follows")
+  follow_bies FollowRelations[] @relation("follow_bies")
 }
 
 model FollowRelations {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  followerId  Int
-  follower    Users    @relation("Follower", fields: [followerId], references: [id])
-  followingId Int
-  following   Users    @relation("following", fields: [followingId], references: [id])
+  id                Int      @id @default(autoincrement())
+  created_at        DateTime @default(now())
+  follow_user_id    Int
+  follows           Users    @relation("follows", fields: [follow_user_id], references: [id])
+  follow_by_user_id Int
+  follow_by         Users    @relation("follow_bies", fields: [follow_by_user_id], references: [id])
 }
 
 model AuthTokens {
