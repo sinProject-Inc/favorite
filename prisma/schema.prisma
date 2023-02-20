@@ -34,6 +34,8 @@ model Users {
   deleted_at  DateTime?
   role_id     Int
   email       String       @unique
+  name        String
+  bio         String?
   role        Roles        @relation(fields: [role_id], references: [id])
   auth_pin    AuthPins[]
   auth_token  AuthTokens[]
