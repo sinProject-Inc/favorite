@@ -71,6 +71,7 @@ model Posts {
   detail      String
   user_id     Int         @unique
   user        Users       @relation(fields: [user_id], references: [id])
+  parent_id   Int?
   likes       Likes[]
   bookmarks   BookMarks[]
 }
