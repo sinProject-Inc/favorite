@@ -82,7 +82,7 @@ model Posts {
   updated_at  DateTime    @updatedAt
   deleted_at  DateTime?
   detail      String
-  user_id     Int         @unique
+  user_id     Int         
   user        Users       @relation(fields: [user_id], references: [id])
   parent_id   Int?
   likes       Likes[]
