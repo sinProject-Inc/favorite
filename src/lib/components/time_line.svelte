@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { PostsApi } from '$lib/post/post_api'
-	import type { Posts } from '@prisma/client'
+	import { GravatarUrl } from '$lib/user/gravatar_url'
+	import type { Posts, Users } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import PostItem from './post_item.svelte'
 
 	const reload_url = '/profile'
 
-	let posts: Posts[] = []
+	let posts: (Posts & { user: Users;})[] = []
 
 	async function fetch_posts(): Promise<void> {
 		posts = await new PostsApi().fetch()
@@ -20,7 +21,7 @@
 <div id="timeline" class="main-contents">
 	{#each posts as post}
 		<PostItem
-			profile_src=""
+			profile_src={new GravatarUrl(post.user.email).url}
 			user_name={post.user_id.toString()}
 			user_link={reload_url}
 			time={post.created_at.toString()}

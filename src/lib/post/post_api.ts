@@ -1,4 +1,4 @@
-import type { Posts } from '@prisma/client'
+import type { Posts, Users } from '@prisma/client'
 import { Api } from '../api/api'
 import { ApiPath } from '../api/api_path'
 
@@ -13,8 +13,8 @@ export class PostsApi {
 			.connect_with_params({ limit: limit_string })
 	}
 
-	public async fetch(): Promise<Posts[]> {
+	public async fetch(): Promise<(Posts & { user: Users;})[]> {
 		const api = new Api(this._api_path)
-		return await api.fetch<Posts[]>()
+		return await api.fetch<(Posts & { user: Users;})[]>()
 	}
 }

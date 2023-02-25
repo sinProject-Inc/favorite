@@ -9,8 +9,8 @@ export const GET: RequestHandler = async ({ url }): Promise<Response> => {
 		const limit_string = url.searchParams.get('limit')
 		const limit = limit_string ? PostLimit.from_string(limit_string) : undefined
 
-		const texts = await Repository.post.find_many(limit)
-		const response = json(texts)
+		const posts = await Repository.post.find_many(limit)
+		const response = json(posts)
 
 		return response
 	} catch (error) {
