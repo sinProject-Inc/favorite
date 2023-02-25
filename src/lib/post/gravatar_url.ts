@@ -7,7 +7,8 @@ export class GravatarUrl {
 
 	public get url(): URL {
     const hash = Md5.hashStr(this._email)
-    const url = new URL(`https://www.gravatar.com/avatar/${hash}?d=identicon`)
+    console.log("hash", hash)
+    const url = new URL(`https://www.gravatar.com/avatar/${hash}`)
     
     return url
   }

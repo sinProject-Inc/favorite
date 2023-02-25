@@ -17,7 +17,7 @@ export const GET: RequestHandler = async () => {
 		await db.appSettings.create({ data: { key: 'pin_code_lifetime_sec', value: '300' } })
 
 		await db.users.create({
-			data: { email: 'test@test.com', name: 'test_user', role: { connect: { name: Roles.user } } },
+			data: { email: 'jitewaboh@lagify.com', name: 'test_user', role: { connect: { name: Roles.user } } },
 		})
 
 		await db.posts.create({

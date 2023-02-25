@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { GravatarUrl } from '$lib/post/gravatar_url'
 	import { PostsApi } from '$lib/post/post_api'
-	import { GravatarUrl } from '$lib/user/gravatar_url'
 	import type { Posts, Users } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import PostItem from './post_item.svelte'
@@ -21,8 +21,8 @@
 <div id="timeline" class="main-contents">
 	{#each posts as post}
 		<PostItem
-			profile_src={new GravatarUrl(post.user.email).url}
-			user_name={post.user_id.toString()}
+			profile_src={new GravatarUrl(post.user.email).url.toString()}
+			user_name="@{post.user.name}"
 			user_link={reload_url}
 			time={post.created_at.toString()}
 			content={post.detail}
