@@ -35,7 +35,7 @@
 		user_link={reload_url}
 		time="・1m ago"
 		content="This is a sample post. #sample #post"
-		image_src=""
+		image_src="https://images.pexels.com/photos/1526713/pexels-photo-1526713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
 	/>
 	<PostItem
 		profile_src="https://picsum.photos/100"
@@ -43,7 +43,7 @@
 		user_link={reload_url}
 		time="・3m ago"
 		content="This is a sample post. #sample #postThis is a sample post. #sample #postThis is a sample post. #sample #postThis is a sample post. #sample #postThis is a sample post. #sample #postThis is a sample post. #sample #postThis is a sample post. #sample #post"
-		image_src=""
+		image_src="https://images.pexels.com/photos/1526713/pexels-photo-1526713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
 	/>
 	<PostItem
 		profile_src="https://picsum.photos/100"
